@@ -1,0 +1,9 @@
+vim 
+hyprland
+Alacritty
+vscode
+firefox
+pulseaudio
+Display
+manager
+sddm

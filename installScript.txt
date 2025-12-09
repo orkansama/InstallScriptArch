@@ -1,0 +1,39 @@
+#!/bin/bash
+set -e  # Skript bricht bei Fehlern ab
+
+# Pakete installieren
+
+if [[ ! -f "./packages.txt" ]]; then
+echo "Datei ./packages.txt nicht gefunden!"
+exit 1
+fi
+
+sudo pacman -S --needed - < ./packages.txt
+
+# Repo klonen
+
+REPO_DIR="$HOME/dotfiles"
+if [[ ! -d "$REPO_DIR" ]]; then
+git clone [https://github.com/orkansama/dotfiles.git](https://github.com/orkansama/dotfiles.git) "$REPO_DIR"
+fi
+
+# Zielordner in .config
+
+CONFIG_DIR="$HOME/.config"
+mkdir -p "$CONFIG_DIR"
+
+# Hyprland und Waybar inkl. .git kopieren
+
+cp -r "$REPO_DIR/hypr" "$CONFIG_DIR/"
+cp -r "$REPO_DIR/waybar" "$CONFIG_DIR/"
+
+# .git und .gitignore kopieren
+
+cp -r "$REPO_DIR/.git" "$CONFIG_DIR/"
+cp "$REPO_DIR/.gitignore" "$CONFIG_DIR/"
+
+# Wenn alles erfolgreich war, Repo löschen
+
+rm -rf "$REPO_DIR"
+
+echo "Installation abgeschlossen, dotfiles kopiert und Repo gelöscht!"
