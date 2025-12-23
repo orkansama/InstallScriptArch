@@ -9,3 +9,4 @@ firefox
 pulseaudio
 nwg-displays
 sddm
+ttf-jetbrains-mono-nerd
