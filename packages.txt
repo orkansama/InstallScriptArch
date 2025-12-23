@@ -1,4 +1,5 @@
 vim
+waybar
 hyprland
 alacritty
 vscode
