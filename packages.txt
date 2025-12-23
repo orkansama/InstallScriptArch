@@ -1,9 +1,8 @@
-vim 
+vim
 hyprland
-Alacritty
+alacritty
 vscode
 firefox
 pulseaudio
-Display
-manager
+nwg-displays
 sddm
