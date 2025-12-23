@@ -1,4 +1,5 @@
 vim
+wofi
 waybar
 hyprland
 alacritty
