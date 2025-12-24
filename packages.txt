@@ -11,3 +11,4 @@ nwg-displays
 sddm
 ttf-jetbrains-mono-nerd
 nvim
+lazygit
