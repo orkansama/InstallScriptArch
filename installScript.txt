@@ -6,31 +6,33 @@ PACKAGES_FILE="./packages.txt"
 REPO_DIR="$HOME/dotfiles"
 CONFIG_DIR="$HOME/.config"
 
-# Pakete installieren
+# Prüfe ob packages.txt da ist 
 if [[ ! -f "$PACKAGES_FILE" ]]; then
     echo "Datei $PACKAGES_FILE nicht gefunden!"
     exit 1
 fi
 
+# Installiere alle Pakete
 sudo pacman -S --needed - < "$PACKAGES_FILE"
 
-# Repo klonen
+# Repo klonen in einen Temporären Ordner "~/dotfiles"
 if [[ ! -d "$REPO_DIR" ]]; then
     git clone https://github.com/orkansama/dotfiles.git "$REPO_DIR"
 fi
 
-# Zielordner in .config erstellen
+# Zielordner .config erstellen falls noch nicht vorhanden
 mkdir -p "$CONFIG_DIR"
 
-# Hyprland und Waybar inkl. .git kopieren
+# Kopiere Daten aus temp dotfiles-Ordner nach .config mit allen unterverzeichnissen (-r)
 cp -r "$REPO_DIR/hypr" "$CONFIG_DIR/"
 cp -r "$REPO_DIR/waybar" "$CONFIG_DIR/"
+cp -r "$REPO_DIR/wofi" "$CONFIG_DIR/"
 
-# .git und .gitignore kopieren
+# .git und .gitignore kopieren 
 cp -r "$REPO_DIR/.git" "$CONFIG_DIR/"
 cp "$REPO_DIR/.gitignore" "$CONFIG_DIR/"
 
-# Wenn alles erfolgreich war, Repo löschen
+# Wenn alles erfolgreich war, temporären Ordner löschen
 rm -rf "$REPO_DIR"
 
 echo "Installation abgeschlossen, dotfiles kopiert und Repo gelöscht!"
