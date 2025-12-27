@@ -36,7 +36,7 @@ ln -sf ~/.config/dotfiles/zsh/.zshenv ~/.zshenv
 export RUNZSH=no  # verhindert dass der Installer exec zsh aufruft damit er nicht nach dem install.sh beendet
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# .git und .gitignore kopieren 
+# .git und .gitignore kopieren nach .config
 cp -r "$REPO_DIR/.git" "$CONFIG_DIR/"
 cp "$REPO_DIR/.gitignore" "$CONFIG_DIR/"
 
