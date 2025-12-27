@@ -12,3 +12,4 @@ sddm
 ttf-jetbrains-mono-nerd
 nvim
 lazygit
+wl-clipboard
