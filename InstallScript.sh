@@ -27,6 +27,14 @@ mkdir -p "$CONFIG_DIR"
 cp -r "$REPO_DIR/hypr" "$CONFIG_DIR/"
 cp -r "$REPO_DIR/waybar" "$CONFIG_DIR/"
 cp -r "$REPO_DIR/wofi" "$CONFIG_DIR/"
+cp -r "$REPO_DIR/zsh" "$CONFIG_DIR/"
+
+# Erstelle ein symlink von .config/zsh/.zshenv nach ~/ (.zshenv MUSS dort sein)
+ln -sf ~/.config/dotfiles/zsh/.zshenv ~/.zshenv
+
+# curl ohmyzsh
+export RUNZSH=no  # verhindert dass der Installer exec zsh aufruft damit er nicht nach dem install.sh beendet
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # .git und .gitignore kopieren 
 cp -r "$REPO_DIR/.git" "$CONFIG_DIR/"
