@@ -2,7 +2,6 @@
 set -e  # Skript bricht bei Fehlern ab
 
 # Variablen
-PACKAGES_FILE="./packages.txt"
 REPO_DIR="$HOME/dotfiles"
 CONFIG_DIR="$HOME/.config"
 
@@ -12,8 +11,15 @@ if [[ ! -f "$PACKAGES_FILE" ]]; then
     exit 1
 fi
 
-# Installiere alle Pakete
-sudo pacman -S --needed - < "$PACKAGES_FILE"
+# Installiere alle pakete
+for FILE in "${PACKAGE_FILES[@]}"; do
+    if [[ -f "$FILE" ]]; then
+        echo "Installing packages from $FILE..."
+        sudo pacman -S --needed - < "$FILE"
+    else
+        echo "File $FILE not found, skipping."
+    fi
+done
 
 # Repo klonen in einen Temporären Ordner "~/dotfiles"
 if [[ ! -d "$REPO_DIR" ]]; then
