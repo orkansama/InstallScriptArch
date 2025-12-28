@@ -41,8 +41,8 @@ cp -r "$REPO_DIR/waybar" "$CONFIG_DIR/"
 cp -r "$REPO_DIR/wofi" "$CONFIG_DIR/"
 cp -r "$REPO_DIR/zsh" "$CONFIG_DIR/"
 
-# Erstelle ein symlink von .config/zsh/.zshenv nach ~/ (.zshenv MUSS dort sein)
-ln -sf ~/.config/dotfiles/zsh/.zshenv ~/.zshenv
+# Erstelle ein symlink von .config/zsh/.zshenv nach ~/ (.zshenv MUSS in Home sein)
+ln -sf ~/.config/zsh/.zshenv ~/.zshenv
 
 # curl ohmyzsh
 export RUNZSH=no  # verhindert dass der Installer exec zsh aufruft damit er nicht nach dem install.sh beendet
