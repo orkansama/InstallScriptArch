@@ -5,9 +5,15 @@ set -e  # Skript bricht bei Fehlern ab
 REPO_DIR="$HOME/dotfiles"
 CONFIG_DIR="$HOME/.config"
 
-# Prüfe ob packages.txt da ist 
-if [[ ! -f "$PACKAGES_FILE" ]]; then
-    echo "Datei $PACKAGES_FILE nicht gefunden!"
+# Array mit allen Package-Dateien
+PACKAGE_FILES=(
+    "./packages.txt"
+    "./zsh_packages.txt"
+)
+
+# Prüfen, ob das Array leer ist
+if [ ${#PACKAGE_FILES[@]} -eq 0 ]; then
+    echo "Keine Paket-Dateien gefunden. Abbruch."
     exit 1
 fi
 
