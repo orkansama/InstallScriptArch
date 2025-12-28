@@ -49,14 +49,14 @@ export RUNZSH=no  # verhindert dass der Installer exec zsh aufruft damit er nich
 export CHSH=no    # verhindert die Abfrage ob zsh nun die standart shell sein soll
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# Ändere die shell manuell
-chsh -s $(which zsh)
-
 # .git und .gitignore kopieren nach .config
 cp -r "$REPO_DIR/.git" "$CONFIG_DIR/"
 cp "$REPO_DIR/.gitignore" "$CONFIG_DIR/"
 
 # Wenn alles erfolgreich war, temporären Ordner löschen
 rm -rf "$REPO_DIR"
+
+# Ändere die shell manuell
+chsh -s $(which zsh)
 
 echo "Installation abgeschlossen, dotfiles kopiert und Repo gelöscht!"
