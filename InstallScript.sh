@@ -46,7 +46,11 @@ ln -sf ~/.config/zsh/.zshenv ~/.zshenv
 
 # curl ohmyzsh
 export RUNZSH=no  # verhindert dass der Installer exec zsh aufruft damit er nicht nach dem install.sh beendet
+export CHSH=no    # verhindert die Abfrage ob zsh nun die standart shell sein soll
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Ändere die shell manuell
+chsh -s $(which zsh)
 
 # .git und .gitignore kopieren nach .config
 cp -r "$REPO_DIR/.git" "$CONFIG_DIR/"
