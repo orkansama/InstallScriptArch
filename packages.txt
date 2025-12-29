@@ -19,3 +19,4 @@ wireplumber
 alsa-utils
 pavucontrol
 which
+keyd
