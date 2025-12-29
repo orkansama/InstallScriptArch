@@ -59,4 +59,7 @@ rm -rf "$REPO_DIR"
 # Ändere die shell manuell
 chsh -s $(which zsh)
 
+# Aktiviere Audio Permanent
+systemctl --user enable --now pipewire pipewire-pulse wireplumber
+
 echo "Installation abgeschlossen, dotfiles kopiert und Repo gelöscht!"
