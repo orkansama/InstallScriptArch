@@ -14,3 +14,8 @@ nvim
 lazygit
 wl-clipboard
 fzf
+pipewire
+pipewire-pulse
+wireplumber
+alsa-utils
+pavucontrol
