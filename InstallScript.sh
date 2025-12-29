@@ -59,6 +59,9 @@ rm -rf "$REPO_DIR"
 # Ändere die shell manuell
 chsh -s $(which zsh)
 
+# Schiebe ohmyzsh nach .config/zsh
+mv ~/.oh-my-zsh $ZDOTDIR
+
 # Aktiviere Audio Permanent
 systemctl --user enable --now pipewire pipewire-pulse wireplumber
 
