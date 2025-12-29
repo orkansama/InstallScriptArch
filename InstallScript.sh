@@ -4,7 +4,6 @@ set -e  # Skript bricht bei Fehlern ab
 # Variablen
 REPO_DIR="$HOME/dotfiles"
 CONFIG_DIR="$HOME/.config"
-KEYD_DIR="/etc/keyd"
 
 # Array mit allen Package-Dateien
 PACKAGE_FILES=(
@@ -42,8 +41,8 @@ cp -r "$REPO_DIR/waybar" "$CONFIG_DIR/"
 cp -r "$REPO_DIR/wofi" "$CONFIG_DIR/"
 cp -r "$REPO_DIR/zsh" "$CONFIG_DIR/"
 
-# Schiebe keyd files nach etc/keyd
-cp -r "$REPO_DIR/zsh" "$KEYD_DIR"
+# Schiebe keyd files nach etc
+cp -r "$REPO_DIR/keyd" "/etc"
 
 # Erstelle ein symlink von .config/zsh/.zshenv nach ~/ (.zshenv MUSS in Home sein)
 ln -sf ~/.config/zsh/.zshenv ~/.zshenv
@@ -55,7 +54,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 # .git und .gitignore kopieren nach .config
 cp -r "$REPO_DIR/.git" "$CONFIG_DIR/"
-cp "$REPO_DIR/.gitignore" "$CONFIG_DIR/"
+cp "$REPO_DIR/.gitignore" "/etc"
 
 # Wenn alles erfolgreich war, temporären Ordner löschen
 rm -rf "$REPO_DIR"
