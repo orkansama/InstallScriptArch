@@ -4,6 +4,7 @@ set -e  # Skript bricht bei Fehlern ab
 # Variablen
 REPO_DIR="$HOME/dotfiles"
 CONFIG_DIR="$HOME/.config"
+KEYD_DIR="/etc/keyd"
 
 # Array mit allen Package-Dateien
 PACKAGE_FILES=(
@@ -41,6 +42,9 @@ cp -r "$REPO_DIR/waybar" "$CONFIG_DIR/"
 cp -r "$REPO_DIR/wofi" "$CONFIG_DIR/"
 cp -r "$REPO_DIR/zsh" "$CONFIG_DIR/"
 
+# Schiebe keyd files nach etc/keyd
+cp -r "$REPO_DIR/zsh" "$KEYD_DIR"
+
 # Erstelle ein symlink von .config/zsh/.zshenv nach ~/ (.zshenv MUSS in Home sein)
 ln -sf ~/.config/zsh/.zshenv ~/.zshenv
 
@@ -64,5 +68,8 @@ mv ~/.oh-my-zsh ~/.config/zsh
 
 # Aktiviere Audio Permanent
 systemctl --user enable --now pipewire pipewire-pulse wireplumber
+
+# Aktiviere keyd Service Permanent
+sudo systemctl enable keyd --now
 
 echo "Installation abgeschlossen, dotfiles kopiert und Repo gelöscht!"
