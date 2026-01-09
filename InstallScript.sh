@@ -73,7 +73,8 @@ if [[ -f "$AUR_FILE" ]]; then
         - < "$AUR_FILE"
 fi
 
-rm -rf yay
+YAY_DIR="$SCRIPT_DIR/yay"
+rm -rf "$YAY_DIR"
 
 # Aktiviere Audio Permanent
 systemctl --user enable --now pipewire pipewire-pulse wireplumber
