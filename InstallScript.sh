@@ -54,7 +54,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 # .git und .gitignore kopieren nach .config
 cp -r "$REPO_DIR/.git" "$CONFIG_DIR/"
-cp "$REPO_DIR/.gitignore" "/etc"
+sudo cp "$REPO_DIR/.gitignore" "/etc"
 
 # Wenn alles erfolgreich war, temporären Ordner löschen
 rm -rf "$REPO_DIR"
