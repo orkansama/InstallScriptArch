@@ -59,7 +59,7 @@ sudo cp "$REPO_DIR/.gitignore" "/etc"
 rm -rf "$REPO_DIR"
 
 # Ändere die shell manuell
-# chsh -s $(which zsh)
+chsh -s $(which zsh)
 
 # Installiere yay und die packete
 sudo pacman -S --needed --noconfirm base-devel git && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm
