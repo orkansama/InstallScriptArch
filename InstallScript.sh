@@ -51,7 +51,7 @@ git clone https://github.com/ohmyzsh/ohmyzsh.git "$HOME/.config/zsh"
 cp -r "$REPO_DIR/zsh/" "$HOME/.config/zsh/" # Erst danach weil git sonst nicht möchte :C
 
 # .git und .gitignore kopieren nach .config
-cp -r "$REPO_DIR/.git" "$CONFIG_DIR/"
+sudo cp -r "$REPO_DIR/.git" "$CONFIG_DIR/"
 sudo cp "$REPO_DIR/.gitignore" "/etc"
 
 # Wenn alles erfolgreich war, temporären Ordner löschen
