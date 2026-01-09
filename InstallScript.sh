@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e  # Skript bricht bei Fehlern ab
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Variablen
 REPO_DIR="$HOME/dotfiles"
@@ -63,12 +64,13 @@ rm -rf "$REPO_DIR"
 # Installiere yay und die packete
 sudo pacman -S --needed --noconfirm base-devel git && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm
 
-if [[ -f aur-packages.txt ]]; then
+AUR_FILE="$SCRIPT_DIR/aur-packages.txt"
+if [[ -f "$AUR_FILE" ]]; then
     echo "Installing AUR packages..."
     yay -S --needed --noconfirm \
         --answerclean All \
         --answerdiff None \
-        - < aur-packages.txt
+        - < "$AUR_FILE"
 fi
 
 rm -rf yay
