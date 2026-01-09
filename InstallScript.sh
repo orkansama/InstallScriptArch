@@ -21,7 +21,7 @@ fi
 for FILE in "${PACKAGE_FILES[@]}"; do
     if [[ -f "$FILE" ]]; then
         echo "Installing packages from $FILE..."
-        sudo pacman -S --needed - < "$FILE"
+        sudo pacman -S --needed --noconfirm - < "$FILE"
     else
         echo "File $FILE not found, skipping."
     fi
@@ -64,6 +64,19 @@ chsh -s $(which zsh)
 
 # Schiebe ohmyzsh nach .config/zsh
 mv ~/.oh-my-zsh ~/.config/zsh
+
+# Installiere yay und die packete
+sudo pacman -S --needed --noconfirm base-devel git && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm
+
+if [[ -f aur-packages.txt ]]; then
+    echo "Installing AUR packages..."
+    yay -S --needed --noconfirm \
+        --answerclean All \
+        --answerdiff None \
+        - < aur-packages.txt
+fi
+
+rm -rf yay
 
 # Aktiviere Audio Permanent
 systemctl --user enable --now pipewire pipewire-pulse wireplumber
