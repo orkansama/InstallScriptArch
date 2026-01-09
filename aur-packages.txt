@@ -1,2 +1,3 @@
 localsend
 hyprsnap
+visual-studio-code-bin
