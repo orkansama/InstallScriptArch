@@ -40,7 +40,6 @@ mkdir -p "$CONFIG_DIR"
 cp -r "$REPO_DIR/hypr" "$CONFIG_DIR/"
 cp -r "$REPO_DIR/waybar" "$CONFIG_DIR/"
 cp -r "$REPO_DIR/wofi" "$CONFIG_DIR/"
-cp -r "$REPO_DIR/zsh" "$CONFIG_DIR/"
 
 # Schiebe keyd files nach etc
 sudo cp -r "$REPO_DIR/keyd" "/etc"
@@ -48,7 +47,8 @@ sudo cp -r "$REPO_DIR/keyd" "/etc"
 # Erstelle ein symlink von .config/zsh/.zshenv nach ~/ (.zshenv MUSS in Home sein)
 ln -sf ~/.config/zsh/.zshenv ~/.zshenv
 
-git clone https://github.com/ohmyzsh/ohmyzsh.git "$ZSH_DIR"
+git clone https://github.com/ohmyzsh/ohmyzsh.git "$HOME/.config/zsh"
+cp -r "$REPO_DIR/zsh/"* "$HOME/.config/zsh/" # Erst danach weil git sonst nicht möchte :C
 
 # .git und .gitignore kopieren nach .config
 cp -r "$REPO_DIR/.git" "$CONFIG_DIR/"
