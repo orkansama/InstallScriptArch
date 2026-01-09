@@ -4,6 +4,7 @@ set -e  # Skript bricht bei Fehlern ab
 # Variablen
 REPO_DIR="$HOME/dotfiles"
 CONFIG_DIR="$HOME/.config"
+ZSH_DIR="$HOME/.config/zsh"
 
 # Array mit allen Package-Dateien
 PACKAGE_FILES=(
@@ -47,10 +48,7 @@ sudo cp -r "$REPO_DIR/keyd" "/etc"
 # Erstelle ein symlink von .config/zsh/.zshenv nach ~/ (.zshenv MUSS in Home sein)
 ln -sf ~/.config/zsh/.zshenv ~/.zshenv
 
-# curl ohmyzsh
-export RUNZSH=no  # verhindert dass der Installer exec zsh aufruft damit er nicht nach dem install.sh beendet
-export CHSH=no    # verhindert die Abfrage ob zsh nun die standart shell sein soll
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone https://github.com/ohmyzsh/ohmyzsh.git "$ZSH_DIR"
 
 # .git und .gitignore kopieren nach .config
 cp -r "$REPO_DIR/.git" "$CONFIG_DIR/"
@@ -61,9 +59,6 @@ rm -rf "$REPO_DIR"
 
 # Ändere die shell manuell
 chsh -s $(which zsh)
-
-# Schiebe ohmyzsh nach .config/zsh
-mv ~/.oh-my-zsh ~/.config/zsh
 
 # Installiere yay und die packete
 sudo pacman -S --needed --noconfirm base-devel git && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm
