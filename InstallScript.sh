@@ -42,7 +42,7 @@ cp -r "$REPO_DIR/wofi" "$CONFIG_DIR/"
 cp -r "$REPO_DIR/zsh" "$CONFIG_DIR/"
 
 # Schiebe keyd files nach etc
-cp -r "$REPO_DIR/keyd" "/etc"
+sudo cp -r "$REPO_DIR/keyd" "/etc"
 
 # Erstelle ein symlink von .config/zsh/.zshenv nach ~/ (.zshenv MUSS in Home sein)
 ln -sf ~/.config/zsh/.zshenv ~/.zshenv
