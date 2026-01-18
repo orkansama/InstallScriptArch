@@ -7,7 +7,6 @@ alacritty
 firefox
 nwg-displays
 sddm
-ttf-jetbrains-mono-nerd
 nvim
 lazygit
 wl-clipboard

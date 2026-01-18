@@ -29,6 +29,22 @@ for FILE in "${PACKAGE_FILES[@]}"; do
     fi
 done
 
+# Datei mit interaktiven Paketen
+INTERACTIVE_FILE="$SCRIPT_DIR/InteractivePackages.txt"
+
+if [[ -f "$INTERACTIVE_FILE" ]]; then
+    echo "Installing interactive packages from $INTERACTIVE_FILE..."
+    while read -r PKG; do
+        # Überspringe leere Zeilen oder Kommentare
+        [[ -z "$PKG" || "$PKG" =~ ^# ]] && continue
+        echo "Installing $PKG interactively..."
+        sudo pacman -S "$PKG"
+    done < "$INTERACTIVE_FILE"
+else
+    echo "No interactive packages file found, skipping."
+fi
+
+
 # Repo klonen in einen Temporären Ordner "~/dotfiles"
 if [[ ! -d "$REPO_DIR" ]]; then
     git clone https://github.com/orkansama/dotfiles.git "$REPO_DIR"
