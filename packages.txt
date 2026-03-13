@@ -20,3 +20,4 @@ pavucontrol
 which
 keyd
 htop
+drawio-desktop
