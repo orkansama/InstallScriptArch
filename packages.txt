@@ -22,3 +22,4 @@ keyd
 htop
 drawio-desktop
 hyprpaper
+sddm

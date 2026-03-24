@@ -83,4 +83,7 @@ systemctl --user enable --now pipewire pipewire-pulse wireplumber
 # Aktiviere keyd Service Permanent
 sudo systemctl enable keyd --now
 
+# Aktiviere sddm greeter
+sudo systemctl enable sddm.service 
+
 echo "Installation abgeschlossen, dotfiles kopiert und Repo gelöscht!"
