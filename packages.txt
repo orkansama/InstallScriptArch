@@ -21,3 +21,4 @@ which
 keyd
 htop
 drawio-desktop
+hyprpaper
