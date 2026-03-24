@@ -41,6 +41,7 @@ mkdir -p "$CONFIG_DIR"
 cp -r "$REPO_DIR/hypr" "$CONFIG_DIR/"
 cp -r "$REPO_DIR/waybar" "$CONFIG_DIR/"
 cp -r "$REPO_DIR/wofi" "$CONFIG_DIR/"
+cp -r "$REPO_DIR/alacritty" "$CONFIG_DIR/"
 
 # Schiebe keyd files nach etc
 sudo cp -r "$REPO_DIR/keyd" "/etc"
