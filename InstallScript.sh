@@ -40,7 +40,7 @@ mkdir -p "$CONFIG_DIR"
 # Kopiere Daten aus temp dotfiles-Ordner nach .config mit allen unterverzeichnissen (-r)
 cp -r "$REPO_DIR/hypr" "$CONFIG_DIR/"
 cp -r "$REPO_DIR/waybar" "$CONFIG_DIR/"
-cp -r "$REPO_DIR/wofi" "$CONFIG_DIR/"
+cp -r "$REPO_DIR/rofi" "$CONFIG_DIR/"
 cp -r "$REPO_DIR/alacritty" "$CONFIG_DIR/"
 
 # Schiebe keyd files nach etc
