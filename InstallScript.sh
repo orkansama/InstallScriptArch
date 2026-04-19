@@ -84,6 +84,7 @@ systemctl --user enable --now pipewire pipewire-pulse wireplumber
 sudo systemctl enable keyd --now
 
 # Aktiviere sddm greeter
-sudo systemctl enable sddm.service 
+sudo systemctl enable sddm.service
+sudo systemctl enable bluetooth.service
 
 echo "Installation abgeschlossen, dotfiles kopiert und Repo gelöscht!"
