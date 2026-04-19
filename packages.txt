@@ -30,3 +30,6 @@ qt5-quickcontrols2
 fd
 hyprlock
 cliphist
+bluez
+bluez-utils
+bluetui
