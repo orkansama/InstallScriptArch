@@ -34,4 +34,4 @@ bluez
 bluez-utils
 bluetui
 hypridle
-ttf-nerd-fonts-symbols
+noto-fonts-extra
