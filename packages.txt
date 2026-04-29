@@ -33,3 +33,4 @@ cliphist
 bluez
 bluez-utils
 bluetui
+hypridle
