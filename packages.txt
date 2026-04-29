@@ -34,3 +34,4 @@ bluez
 bluez-utils
 bluetui
 hypridle
+ttf-nerd-fonts-symbols
