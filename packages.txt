@@ -35,3 +35,4 @@ bluez-utils
 bluetui
 hypridle
 noto-fonts-extra
+mpv
