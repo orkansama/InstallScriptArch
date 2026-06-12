@@ -36,3 +36,4 @@ bluetui
 hypridle
 noto-fonts-extra
 mpv
+hyprshot
