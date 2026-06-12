@@ -37,3 +37,4 @@ hypridle
 noto-fonts-extra
 mpv
 hyprshot
+dunst
