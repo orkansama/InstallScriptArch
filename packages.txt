@@ -38,3 +38,4 @@ noto-fonts-extra
 mpv
 hyprshot
 dunst
+jq
