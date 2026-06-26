@@ -3,4 +3,3 @@ hyprsnap
 visual-studio-code-bin
 ttf-ms-fonts
 drift-bin
-xrdp
