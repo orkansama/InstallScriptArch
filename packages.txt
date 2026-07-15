@@ -33,7 +33,6 @@ cliphist
 bluez
 bluez-utils
 bluetui
-hypridle
 noto-fonts-extra
 mpv
 hyprshot
