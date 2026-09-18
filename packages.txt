@@ -1,6 +1,5 @@
 vim
 rofi
-dolphin
 waybar
 hyprland
 alacritty
@@ -40,3 +39,5 @@ dunst
 jq
 freerdp
 remmina
+tmux
+yazi
