@@ -27,7 +27,6 @@ qt6-svg
 qt6-declarative
 qt5-quickcontrols2
 fd
-hyprlock
 cliphist
 bluez
 bluez-utils
