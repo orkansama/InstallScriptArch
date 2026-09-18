@@ -1,3 +1,4 @@
 localsend
 visual-studio-code-bin
 ttf-ms-fonts
+claude-code
