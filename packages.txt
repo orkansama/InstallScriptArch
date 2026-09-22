@@ -42,3 +42,5 @@ tmux
 yazi
 noto-fonts-emoji
 noto-fonts-cjk
+tree-sitter
+tree-sitter-cli
