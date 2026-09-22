@@ -44,9 +44,10 @@ cp -r "$REPO_DIR/rofi" "$CONFIG_DIR/"
 cp -r "$REPO_DIR/alacritty" "$CONFIG_DIR/"
 cp -r "$REPO_DIR/yazi" "$CONFIG_DIR/"
 cp -r "$REPO_DIR/tmux" "$CONFIG_DIR/"
+cp -r "$REPO_DIR/keyd" "$CONFIG_DIR/"
 
 # Schiebe keyd files nach etc
-sudo cp -r "$REPO_DIR/keyd" "/etc"
+sudo ln -s "$REPO_DIR/keyd" "/etc/keyd"
 
 # Erstelle ein symlink von .config/zsh/.zshenv nach ~/ (.zshenv MUSS in Home sein)
 ln -sf ~/.config/zsh/.zshenv ~/.zshenv
