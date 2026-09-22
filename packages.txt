@@ -41,3 +41,4 @@ remmina
 tmux
 yazi
 noto-fonts-emoji
+noto-fonts-cjk
