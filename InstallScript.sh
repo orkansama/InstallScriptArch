@@ -56,7 +56,9 @@ cp -r "$REPO_DIR/zsh/." "$HOME/.config/zsh/"
 
 # .git und .gitignore kopieren nach .config
 sudo cp -r "$REPO_DIR/.git" "$CONFIG_DIR/"
-sudo cp "$REPO_DIR/.gitignore" "/etc"
+sudo cp "$REPO_DIR/.gitignore" "$CONFIG_DIR/"
+
+sudo chown -R $(lslogins -u -o USER | fzf --height 40% --layout reverse --border --prompt 'Select dotfiles owner> ') "$CONFIG_DIR/"
 
 # Wenn alles erfolgreich war, temporären Ordner löschen
 rm -rf "$REPO_DIR"
