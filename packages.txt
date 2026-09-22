@@ -40,3 +40,4 @@ freerdp
 remmina
 tmux
 yazi
+noto-fonts-emoji
