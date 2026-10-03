@@ -44,3 +44,4 @@ noto-fonts-emoji
 noto-fonts-cjk
 tree-sitter
 tree-sitter-cli
+git-delta
