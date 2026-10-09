@@ -46,3 +46,4 @@ tree-sitter
 tree-sitter-cli
 git-delta
 rofimoji
+docker
