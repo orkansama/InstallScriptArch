@@ -1,95 +1,39 @@
 #!/bin/bash
-set -e  # Skript bricht bei Fehlern ab
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+set -e
+ROOT=$(pwd)
 
-# Variablen
-REPO_DIR="$HOME/dotfiles"
-CONFIG_DIR="$HOME/.config"
-ZSH_DIR="$HOME/.config/zsh"
+# Install pacman packages
+pacman_packages="./packages.txt"
+yay_dir_name="yay"
+sudo pacman -S --needed --noconfirm - < "$pacman_packages"
 
-# Array mit allen Package-Dateien
-PACKAGE_FILES=(
-    "./packages.txt"
-    "./zsh_packages.txt"
-)
+# Install yay per pacman
+sudo pacman -S --needed --noconfirm base-devel git && git clone https://aur.archlinux.org/yay.git && cd $yay_dir_name && makepkg -si --noconfirm
+cd $ROOT
+rm -rf $yay_dir_name
 
-# Prüfen, ob das Array leer ist
-if [ ${#PACKAGE_FILES[@]} -eq 0 ]; then
-    echo "Keine Paket-Dateien gefunden. Abbruch."
-    exit 1
-fi
+# Install aur packages per yay
+yay_packages="./aur-packages.txt"
+yay -S --needed --noconfirm \
+    --answerclean All \
+    --answerdiff None \
+    - < "$yay_packages"
 
-# Installiere alle pakete
-for FILE in "${PACKAGE_FILES[@]}"; do
-    if [[ -f "$FILE" ]]; then
-        echo "Installing packages from $FILE..."
-        sudo pacman -S --needed --noconfirm - < "$FILE"
-    else
-        echo "File $FILE not found, skipping."
-    fi
-done
+# Clone dotfiles
+projects_directory="$HOME/projects"
+dotfiles_directory="$projects_directory/dotfiles"
+cd $projects_directory
+git clone https://github.com/orkansama/dotfiles
+cd $dotfiles_directory
+./automatic-symlink-creator.sh
 
-# Repo klonen in einen Temporären Ordner "~/dotfiles"
-if [[ ! -d "$REPO_DIR" ]]; then
-    git clone https://github.com/orkansama/dotfiles.git "$REPO_DIR"
-fi
-
-# Zielordner .config erstellen falls noch nicht vorhanden
-mkdir -p "$CONFIG_DIR"
-
-# Kopiere Daten aus temp dotfiles-Ordner nach .config mit allen unterverzeichnissen (-r)
-cp -r "$REPO_DIR/hypr" "$CONFIG_DIR/"
-cp -r "$REPO_DIR/waybar" "$CONFIG_DIR/"
-cp -r "$REPO_DIR/rofi" "$CONFIG_DIR/"
-cp -r "$REPO_DIR/alacritty" "$CONFIG_DIR/"
-cp -r "$REPO_DIR/yazi" "$CONFIG_DIR/"
-cp -r "$REPO_DIR/tmux" "$CONFIG_DIR/"
-cp -r "$REPO_DIR/keyd" "$CONFIG_DIR/"
-
-# Schiebe keyd files nach etc
-sudo ln -s "$REPO_DIR/keyd" "/etc/keyd"
-
-# Erstelle ein symlink von .config/zsh/.zshenv nach ~/ (.zshenv MUSS in Home sein)
-ln -sf ~/.config/zsh/.zshenv ~/.zshenv
-
-git clone https://github.com/ohmyzsh/ohmyzsh.git "$HOME/.config/zsh/ohmyzsh/"
-cp -r "$REPO_DIR/zsh/." "$HOME/.config/zsh/"
-
-# .git und .gitignore kopieren nach .config
-sudo cp -r "$REPO_DIR/.git" "$CONFIG_DIR/"
-sudo cp "$REPO_DIR/.gitignore" "$CONFIG_DIR/"
-
-sudo chown -R $(lslogins -u -o USER | fzf --height 40% --layout reverse --border --prompt 'Select dotfiles owner> ') "$CONFIG_DIR/"
-
-# Wenn alles erfolgreich war, temporären Ordner löschen
-rm -rf "$REPO_DIR"
-
-# Ändere die shell manuell
 chsh -s $(which zsh)
+sudo ln -s "$dotfiles_directory/keyd" "/etc/keyd"
 
-# Installiere yay und die packete
-sudo pacman -S --needed --noconfirm base-devel git && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm
-
-AUR_FILE="$SCRIPT_DIR/aur-packages.txt"
-if [[ -f "$AUR_FILE" ]]; then
-    echo "Installing AUR packages..."
-    yay -S --needed --noconfirm \
-        --answerclean All \
-        --answerdiff None \
-        - < "$AUR_FILE"
-fi
-
-YAY_DIR="$SCRIPT_DIR/yay"
-rm -rf "$YAY_DIR"
-
-# Aktiviere Audio Permanent
 systemctl --user enable --now pipewire pipewire-pulse wireplumber
-
-# Aktiviere keyd Service Permanent
 sudo systemctl enable keyd --now
-
-# Aktiviere sddm greeter
 sudo systemctl enable sddm.service
 sudo systemctl enable bluetooth.service
 
-echo "Installation abgeschlossen, dotfiles kopiert und Repo gelöscht!"
+printf "dont forget to change git auth to ssh!"
+echo "Installation completed"

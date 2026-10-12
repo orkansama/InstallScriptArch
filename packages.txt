@@ -48,3 +48,5 @@ git-delta
 rofimoji
 docker
 openssh
+zsh
+zoxide
